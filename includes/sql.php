@@ -148,6 +148,21 @@ function tableExists($table){
       return $result;
   }
   /*--------------------------------------------------------------*/
+  /* Find all user by costumers
+  /* 
+  /*--------------------------------------------------------------*/
+  function find_all_costumers(){
+      global $db;
+      $results = array();
+      $sql = "SELECT * FROM costumers";
+     // $sql .="g.group_name ";
+      //$sql .="FROM users u ";
+      //$sql .="LEFT JOIN user_groups g ";
+      //$sql .="ON g.group_level=u.user_level ORDER BY u.name ASC";
+      $result = find_by_sql($sql);
+      return $result;
+  }
+  /*--------------------------------------------------------------*/
   /* Function to update the last log in of a user
   /*--------------------------------------------------------------*/
 
@@ -179,6 +194,19 @@ function tableExists($table){
     $sql = "SELECT group_level FROM user_groups WHERE group_level = '{$db->escape($level)}' LIMIT 1 ";
     $result = $db->query($sql);
     return($db->num_rows($result) === 0 ? true : false);
+  }
+  /*--------------------------------------------------------------*/
+  /* Find group level
+  /*--------------------------------------------------------------*/
+  function find_by_groupLevel1()
+  {
+    global $db;
+    $sql = "SELECT group_level FROM user_groups ORDER BY id DESC LIMIT 1 ";
+    $result = $db->query($sql);
+    //$session->msg('d',$result);
+    //redirect('add_group.php', false);
+   //return($db->num_rows($result) === 0 ? true : false);
+  return $result;
   }
   /*--------------------------------------------------------------*/
   /* Function for cheaking which user level has access to page

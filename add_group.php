@@ -3,29 +3,37 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(1);
+   $level = find_by_groupLevel1();
+   $nivel = '';
+ foreach($level as $a_level):
+   $nivel = remove_junk(ucwords($a_level['group_level']));
+ endforeach;
+  $nivel +=1; 
 ?>
 <?php
   if(isset($_POST['add'])){
 
-   $req_fields = array('group-name','group-level');
+  // $req_fields = array('group-name','group-level');
+   $req_fields = array('group-name');
    validate_fields($req_fields);
 
    if(find_by_groupName($_POST['group-name']) === false ){
      $session->msg('d','<b>Error!</b> El nombre de grupo realmente existe en la base de datos');
      redirect('add_group.php', false);
-   }elseif(find_by_groupLevel($_POST['group-level']) === false) {
+   }/*elseif(find_by_groupLevel($_POST['group-level']) === false) {
      $session->msg('d','<b>Error!</b> El nombre de grupo realmente existe en la base de datos ');
      redirect('add_group.php', false);
-   }
+   }*/
+    
    if(empty($errors)){
            $name = remove_junk($db->escape($_POST['group-name']));
-          $level = remove_junk($db->escape($_POST['group-level']));
+          //$level = remove_junk($db->escape($_POST['group-level']));
          $status = remove_junk($db->escape($_POST['status']));
 
         $query  = "INSERT INTO user_groups (";
         $query .="group_name,group_level,group_status";
         $query .=") VALUES (";
-        $query .=" '{$name}', '{$level}','{$status}'";
+        $query .=" '{$name}', '{$nivel}','{$status}'";
         $query .=")";
         if($db->query($query)){
           //sucess
@@ -43,6 +51,7 @@
  }
 ?>
 <?php include_once('layouts/header.php'); ?>
+
 <div class="login-page">
     <div class="text-center">
        <h3>Agregar nuevo grupo de usurios</h3>
@@ -55,7 +64,10 @@
         </div>
         <div class="form-group">
               <label for="level" class="control-label">Nivel del grupo</label>
-              <input type="number" class="form-control" name="group-level">
+             <!-- <input type="number" class="form-control" name="group-level">
+              -->
+          <input type="text" class="form-control" disabled name="group-level" value="<?php echo $nivel?>">
+              
         </div>
         <div class="form-group">
           <label for="status">Estado</label>
