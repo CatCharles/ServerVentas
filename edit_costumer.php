@@ -29,7 +29,7 @@
             $sql = "UPDATE costumers SET costumer_name ='{$costumer_name}' WHERE id='{$db->escape($id)}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
-            $session->msg('s',"Cliene actualizado ");
+            $session->msg('s',"Cliente actualizado ");
             redirect('edit_costumer.php?id='.(int)$e_costumer['id'], false);
           } else {
             $session->msg('d',' Lo siento no se actualizó los datos.');

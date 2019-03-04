@@ -308,6 +308,39 @@ function tableExists($table){
    $sql .= " ORDER BY SUM(s.qty) DESC LIMIT ".$db->escape((int)$limit);
    return $db->query($sql);
  }
+
+/*--------------------------------------------------------------*/
+ /* Función para encontrar todas las ventas.
+ /*--------------------------------------------------------------*/
+ function find_all_ventas(){
+   global $db;
+   $sql  = "SELECT v.id as id, v.cliente as cliente, v.total as total, v.fecha as fecha, v.id_ticket as id_ticket, c.costumer_name as costumer_name";
+   $sql .= " FROM ventas v INNER JOIN costumers c";
+   $sql .= " ON v.cliente = c.id ";
+   //$sql .= " LEFT JOIN products p ON s.product_id = p.id";
+   $sql .= " ORDER BY id_ticket DESC";
+   return find_by_sql($sql);
+ }
+ /*--------------------------------------------------------------*/
+ /* Function for find by ticket.
+ /*--------------------------------------------------------------*/
+ function find_by_ticket($id){
+   global $db;
+   $sql  = "SELECT s.id as id, p.name as name, s.qty as qty, s.price as price FROM
+                sales s INNER JOIN products p ON (p.id = s.product_id) WHERE s.id_ticket= " . $id ;
+   return find_by_sql($sql);
+ }
+
+ /*--------------------------------------------------------------*/
+ /* Function to get last ticket id.
+ /*--------------------------------------------------------------*/
+ function find_last_ticket($id){
+   global $db;
+   $sql  = "SELECT MAX(id_ticket) FROM sales";
+   return find_by_sql($sql);
+ }
+
+
  /*--------------------------------------------------------------*/
  /* Function for find all sales
  /*--------------------------------------------------------------*/
@@ -337,7 +370,7 @@ function find_sale_by_dates($start_date,$end_date){
   global $db;
   $start_date  = date("Y-m-d", strtotime($start_date));
   $end_date    = date("Y-m-d", strtotime($end_date));
-  $sql  = "SELECT s.date, p.name,p.sale_price,p.buy_price,";
+  $sql  = "SELECT ANY_VALUE(s.date) AS date, p.name,p.sale_price,p.buy_price,";
   $sql .= "COUNT(s.product_id) AS total_records,";
   $sql .= "SUM(s.qty) AS total_sales,";
   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price,";
@@ -354,8 +387,8 @@ function find_sale_by_dates($start_date,$end_date){
 /*--------------------------------------------------------------*/
 function  dailySales($year,$month){
   global $db;
-  $sql  = "SELECT s.qty,";
-  $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
+  $sql  = "SELECT ANY_VALUE(s.qty) AS cantidad,";
+  $sql .= " DATE_FORMAT(ANY_VALUE(s.date), '%Y-%m-%e') AS date,p.name,";
   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
   $sql .= " FROM sales s";
   $sql .= " LEFT JOIN products p ON s.product_id = p.id";
@@ -368,8 +401,8 @@ function  dailySales($year,$month){
 /*--------------------------------------------------------------*/
 function  monthlySales($year){
   global $db;
-  $sql  = "SELECT s.qty,";
-  $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
+  $sql  = "SELECT ANY_VALUE(s.qty) AS cantidad,";
+  $sql .= " DATE_FORMAT(ANY_VALUE(s.date), '%Y-%m-%e') AS date,p.name,";
   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
   $sql .= " FROM sales s";
   $sql .= " LEFT JOIN products p ON s.product_id = p.id";

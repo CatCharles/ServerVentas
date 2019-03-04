@@ -36,7 +36,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-btn">
-                    <input type="file" name="file_upload" multiple="multiple" class="btn btn-primary btn-file"/>
+                    <input type="file" name="file_upload" multiple="multiple" class="btn btn-primary btn-file" placeholder="hola"/>
                  </span>
 
                  <button type="submit" name="submit" class="btn btn-default">Subir</button>

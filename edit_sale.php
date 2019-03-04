@@ -56,21 +56,21 @@ if(!$sale){
     <div class="panel-heading clearfix">
       <strong>
         <span class="glyphicon glyphicon-th"></span>
-        <span>All Sales</span>
+        <span>Producto de venta.</span>
      </strong>
      <div class="pull-right">
-       <a href="sales.php" class="btn btn-primary">Show all sales</a>
+       <a href="sales.php" class="btn btn-primary">Volver a ticket #<?php echo (int)$_GET['ticket'] ?></a>
      </div>
     </div>
     <div class="panel-body">
        <table class="table table-bordered">
          <thead>
-          <th> Product title </th>
-          <th> Qty </th>
-          <th> Price </th>
+          <th> Nombre del producto </th>
+          <th> Cantidad </th>
+          <th> Precio </th>
           <th> Total </th>
-          <th> Date</th>
-          <th> Action</th>
+          <th> Fecha</th>
+          <th> Acción</th>
          </thead>
            <tbody  id="product_info">
               <tr>
@@ -86,13 +86,13 @@ if(!$sale){
                   <input type="text" class="form-control" name="price" value="<?php echo remove_junk($product['sale_price']); ?>" >
                 </td>
                 <td>
-                  <input type="text" class="form-control" name="total" value="<?php echo remove_junk($sale['price']); ?>">
+                  <input type="text" class="form-control" name="total" value="<?php echo remove_junk($sale['qty']*$product['sale_price']); ?>">
                 </td>
                 <td id="s_date">
                   <input type="date" class="form-control datepicker" name="date" data-date-format="" value="<?php echo remove_junk($sale['date']); ?>">
                 </td>
                 <td>
-                  <button type="submit" name="update_sale" class="btn btn-primary">Update sale</button>
+                  <button type="submit" name="update_sale" class="btn btn-primary">Actualizar producto</button>
                 </td>
               </form>
               </tr>

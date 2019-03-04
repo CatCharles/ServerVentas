@@ -7,7 +7,7 @@
 <?php
  $c_categorie     = count_by_id('categories');
  $c_product       = count_by_id('products');
- $c_sale          = count_by_id('sales');
+ $c_sale          = count_by_id('ventas');
  $c_user          = count_by_id('users');
  $products_sold   = find_higest_saleing_product('10');
  $recent_products = find_recent_product_added('5');

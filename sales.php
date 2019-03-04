@@ -6,6 +6,7 @@
 ?>
 <?php
 $sales = find_all_sale();
+$ventas = find_all_ventas();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -29,28 +30,31 @@ $sales = find_all_sale();
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th class="text-center" style="width: 50px;">#</th>
-                <th> Nombre del producto </th>
-                <th class="text-center" style="width: 15%;"> Cantidad</th>
-                <th class="text-center" style="width: 15%;"> Total </th>
+                <th class="text-center" style="width: 50px;">#</th>                
+                <th class="text-center" style="width: 15%;"> Id. cliente</th>
+                <th class="text-center" style="width: 15%;"> Total (MXN)</th>
                 <th class="text-center" style="width: 15%;"> Fecha </th>
+                <th class="text-center" style="width: 15%;"> # Ticket </th>
                 <th class="text-center" style="width: 100px;"> Acciones </th>
              </tr>
             </thead>
            <tbody>
-             <?php foreach ($sales as $sale):?>
+             <?php foreach ($ventas as $sale):?>
              <tr>
                <td class="text-center"><?php echo count_id();?></td>
-               <td><?php echo remove_junk($sale['name']); ?></td>
-               <td class="text-center"><?php echo (int)$sale['qty']; ?></td>
-               <td class="text-center"><?php echo remove_junk($sale['price']); ?></td>
-               <td class="text-center"><?php echo $sale['date']; ?></td>
+               <td><?php echo remove_junk($sale['costumer_name']); ?></td>
+               <td class="text-center"><?php echo $sale['total']; ?></td>
+               <td class="text-center"><?php echo remove_junk($sale['fecha']); ?></td>
+               <td class="text-center"><?php echo $sale['id_ticket']; ?></td>
                <td class="text-center">
-                  <div class="btn-group">
-                     <a href="edit_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-warning btn-xs"  title="Edit" data-toggle="tooltip">
+                  <div class="btn-group">                     
+                     <a href="ver_venta.php?id=<?php echo (int)$sale['id_ticket'];?>" class="btn btn-warning btn-xs"  title="Ver" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-edit"></span>
                      </a>
-                     <a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
+                     <!--<a href="edit_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-warning btn-xs"  title="Editar" data-toggle="tooltip">
+                       <span class="glyphicon glyphicon-edit"></span>
+                     </a>-->
+                     <a href="borrar_venta.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Eliminar" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-trash"></span>
                      </a>
                   </div>

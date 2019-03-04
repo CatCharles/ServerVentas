@@ -48,7 +48,7 @@
                 <a href="edit_costumer.php?id=<?php echo (int)$a_costumer['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
                   <i class="glyphicon glyphicon-pencil"></i>
                </a>
-                <a href="delete_user.php?id=<?php echo (int)$a_costumer['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Eliminar">
+                <a href="delete_costumer.php?id=<?php echo (int)$a_costumer['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Eliminar">
                   <i class="glyphicon glyphicon-remove"></i>
                 </a>
                 </div>

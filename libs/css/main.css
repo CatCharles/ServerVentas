@@ -1,3 +1,4 @@
+
 body{
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -6,17 +7,23 @@ body{
   background: #f1f2f7;
   height: 100%;
   width: 100%;
+  background:url(img/citynight.gif);
+  background-size: auto 720px;
 }a{
-  color #777;
+  color:#777;
   text-decoration: none;
 }.padding-top{
   padding-top: 20px;
 }.login-page{
-  width: 350px;
-  margin: 7% auto;
-  padding: 0 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #f2f2f2;
+ width: 350px;
+margin: 0% 23%;
+padding: 2% 20px;
+background-color: #f3dcdc;
+border: 1px solid #f2f2f2;
+border-bottom-left-radius: 5%;
+border-bottom-right-radius: 5%;
+border-top-left-radius: 5%;
+border-top-right-radius: 5%;
 }.login-page .text-center{
   margin-bottom: 10px;
 }.box{
@@ -84,20 +91,21 @@ body{
   left: 0;
   background-color: #fff;
   width: 100%;
-  height: 65px;
+  height: 70px;
   line-height: 65px;
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 } header > .logo {
-    color: #fff;
+    color: #e4dede;
     text-align: center;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-block;
     width: 250px;
-     background-color: #16a085;
+    background-color: #e4dede;
+  
 }.header-date{
   color: #9b9b9b;
   margin-left: 20px;
@@ -283,7 +291,8 @@ table tfoot tr td:first-child{
   border-radius: 0;
 }
 input[type=file]{
-  text-indent: -99999px;
+  /*text-indent: -99999px;*/
+  text-indent:10px;
 }td img.img-thumbnail{
   width: 125px;
   height: 125px;

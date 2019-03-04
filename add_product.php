@@ -73,7 +73,7 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
-                    <select class="form-control" name="product-categorie">
+                    <select class="form-control" name="product-categorie" id ="slc2_categorie">
                       <option value="">Selecciona una categoría</option>
                     <?php  foreach ($all_categories as $cat): ?>
                       <option value="<?php echo (int)$cat['id'] ?>">
@@ -82,7 +82,7 @@
                     </select>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-control" name="product-photo">
+                    <select class="form-control" name="product-photo" id="slc2_photo">
                       <option value="">Selecciona una imagen</option>
                     <?php  foreach ($all_photo as $photo): ?>
                       <option value="<?php echo (int)$photo['id'] ?>">
@@ -132,3 +132,11 @@
   </div>
 
 <?php include_once('layouts/footer.php'); ?>
+<?php include 'select2.php' ?>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#slc2_categorie').select2();
+    $('#slc2_photo').select2();
+  });
+</script>

@@ -10,8 +10,8 @@
   </div>
  <div class="col-md-12">
     <div class="panel">
-      <div class="jumbotron text-center">
-         <h1>Esta es su nueva página de inicio</h1>
+      <div class="jumbotron text-center" style="background-color: beige;">
+         <h1 style="color: darksalmon;">Bienvenido a tu página de inventarios.</h1>
      
       </div>
     </div>

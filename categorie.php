@@ -14,6 +14,7 @@
    if(empty($errors)){
       $sql  = "INSERT INTO categories (name)";
       $sql .= " VALUES ('{$cat_name}')";
+     
       if($db->query($sql)){
         $session->msg("s", "Categoría agregada exitosamente.");
         redirect('categorie.php',false);
